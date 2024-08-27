@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+	<a class="navbar-brand" href="/">My Watch List</a>
+	<% if(user) { %>
+	<span class="navbar-text text-light ml-3"
+		>Logged in as: <%= user.username %></span
+	>
+	<% } %>
+	<div class="navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="/">Home</a>
+			</li>
+			<% if (!user) { %>
+			<li class="nav-item">
+				<a class="nav-link" href="/login">Login</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/register">Register</a>
+			</li>
+			<% } else { %>
+			<li class="nav-item">
+				<a class="nav-link" href="/mylist">My List</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/logout">Logout</a>
+			</li>
+			<% } %>
+		</ul>
+	</div>
+</nav>

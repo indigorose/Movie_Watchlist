@@ -55,7 +55,7 @@ app.get('/results', async (req, res) => {
 		const response = await axios.get(
 			`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIEDB_API_KEY}&query=${query}`
 		);
-		const movies = response.data.results.slice(0, 10);
+		const movies = response.data.results.slice(0, 12);
 
 		// Render the search results in search.ejs
 		res.render('results', { query, movies, user: req.user });

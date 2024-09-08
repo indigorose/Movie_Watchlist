@@ -16,4 +16,8 @@ router
 
 router.route('/logout').get(userController.logoutUser);
 
+router.route('/add').post(userController.addMovie);
+
+router.route('/mylist').get(userController.renderUserPage);
+
 module.exports = router;

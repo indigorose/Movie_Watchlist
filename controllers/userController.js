@@ -43,6 +43,43 @@ const logoutUser = (req, res) => {
 	});
 };
 
+const addMovie = async (req, res) => {
+	const { movieId, title, poster_path, release_date } = req.body;
+	const userId = req.user._id;
+	try {
+		// Find the user
+		const user = await User.findById(userId);
+
+		// Check if the movie is already on the list
+		const movieExists = user.movies.some(
+			(movie) => movie.movieId === Number(movieId)
+		);
+
+		if (!movieExists) {
+			user.movies.push({ movieId, title, poster_path, release_date });
+			await user.save();
+		}
+		// redirect to user list(myList) to view movies
+		res.redirect('/mylist');
+	} catch (error) {
+		console.error(error);
+		res.status(500).send('Server error');
+	}
+};
+
+const renderUserPage = async (req, res) => {
+	try {
+		// Finds the user and populates the array of stored movies
+		const user = await User.findById(req.user._id).populate('movies');
+
+		// Ask to render the page 'my list' based on the array of the user
+		res.render('mylist', { user });
+	} catch (error) {
+		console.error('Error fetching movie list:', error);
+		res.status(500).send('Server error');
+	}
+};
+
 module.exports = {
 	loginPage,
 	loginUser,
@@ -50,4 +87,6 @@ module.exports = {
 	registerUser,
 	logoutUser,
 	defaultPage,
+	addMovie,
+	renderUserPage,
 };

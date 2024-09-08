@@ -44,6 +44,44 @@
 									movie.release_date.split('-')[0] : 'N/A' %>)
 								</h5>
 							</div>
+							<% if(user) { %>
+							<div class="card-footer text-center">
+								<form
+									action="/add"
+									method="POST"
+									style="display: inline"
+								>
+									<input
+										type="hidden"
+										name="movieId"
+										value="<%= movie.id %>"
+									/>
+									<input
+										type="hidden"
+										name="title"
+										value="<%= movie.title %>"
+									/>
+									<input
+										type="hidden"
+										name="poster_path"
+										value="<%= movie.poster_path %>"
+									/>
+									<input
+										type="hidden"
+										name="release_date"
+										value="<%= movie.release_date %>"
+									/>
+									<button
+										type="submit"
+										class="btn ml-auto btn-success"
+									>
+										Add to My List
+									</button>
+								</form>
+							</div>
+							<% } else { %>
+							<p>Sign in to add to your list</p>
+							<% } %>
 						</div>
 					</div>
 					<% }) %>

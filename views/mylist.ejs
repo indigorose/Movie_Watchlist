@@ -19,6 +19,39 @@
 		</head>
 		<body>
 			<%- include ('partials/navbar') %>
+			<!-- views/mylist.ejs -->
+			<% if (user && user.movies.length > 0) { %>
+			<div class="container">
+				<h2>My Movie List</h2>
+				<div class="row">
+					<% user.movies.forEach(movie => { %>
+					<div class="col-12 col-md-3 mb-4">
+						<div class="card">
+							<% if (movie.poster_path) { %>
+							<img
+								src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>"
+								class="card-img-top"
+								alt="<%= movie.title %> Poster"
+							/>
+							<% } else { %>
+							<div class="card-body">
+								<p class="card-text">No poster available</p>
+							</div>
+							<% } %>
+							<div class="card-body">
+								<h5 class="card-title">
+									<%= movie.title %> (<%= movie.release_date ?
+									movie.release_date.split('-')[0] : 'N/A' %>)
+								</h5>
+							</div>
+						</div>
+					</div>
+					<% }) %>
+				</div>
+			</div>
+			<% } else { %>
+			<p>No movies in your list yet.</p>
+			<% } %>
 		</body>
 	</html>
 </html>

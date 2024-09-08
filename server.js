@@ -32,7 +32,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()));
+// Configure passport-local-mongoose
+passport.use(User.createStrategy()); // This is provided by passport-local-mongoose
+
+// Serialize and deserialize user instances to and from the session
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 

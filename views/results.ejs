@@ -19,7 +19,7 @@
 		</head>
 		<body>
 			<%- include ('partials/navbar') %>
-			<h1>Search Results for "<%= query %>"</h1>
+			<h1 class="text-center p-4">Top 10 results for <%= query %></h1>
 
 			<% if (movies.length > 0) { %>
 			<div class="container">
@@ -80,7 +80,7 @@
 								</form>
 							</div>
 							<% } else { %>
-							<p>Sign in to add to your list</p>
+							<a class="" href="/login">Login to add to List</a>
 							<% } %>
 						</div>
 					</div>

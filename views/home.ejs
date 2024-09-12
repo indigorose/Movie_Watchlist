@@ -14,8 +14,65 @@
 	</head>
 	<body>
 		<%- include('partials/navbar') %>
-
-		<div class="container mt-4">
+		<section class="bg-light">
+			<div class="container-fluid overflow-hidden">
+				<div class="row">
+					<div
+						class="col-12 col-md-6 order-1 order-md-0 align-self-md-end"
+					>
+						<div
+							class="row py-3 py-sm-5 py-xl-9 mt-md-10 justify-content-sm-center"
+						>
+							<div class="col-12 col-sm-10">
+								<h2 class="display-2 fw-bolder mb-4">
+									Welcome to My Watch List
+								</h2>
+								<div class="row">
+									<div class="col-12 col-xxl-8">
+										<p class="fs-5 mb-5">
+											An application to search and create
+											lists of films you would like to
+											watch one day.
+										</p>
+									</div>
+								</div>
+								<form action="/results" method="GET">
+									<div class="form-group form-floating mb-3">
+										<input
+											type="text"
+											name="query"
+											class="form-control"
+											id="search"
+											required
+										/>
+										<label class="form-label" for="search"
+											>Search for your movies here</label
+										>
+									</div>
+									<div class="d-grid gap-2 d-sm-flex">
+										<button
+											type="submit"
+											class="btn btn-primary btn-login text-uppercase fw-bold"
+										>
+											Search
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 p-0">
+						<img
+							class="img-fluid w-100 h-100 object-fit-cover"
+							loading="lazy"
+							src="../public/images/sean-benesh-6Nbo9Pn0yJA-unsplash.jpg"
+							alt="Movie Store"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- <div class="container mt-4">
 			<h1>Welcome to My Watch List</h1>
 			<p>
 				An application to search and create lists of films you would
@@ -35,6 +92,9 @@
 					</form>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</body>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

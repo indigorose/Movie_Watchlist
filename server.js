@@ -10,6 +10,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/userModel');
 const axios = require('axios');
+const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
@@ -18,7 +19,7 @@ connectDB();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static('public'));
+app.use('/img', express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 app.use(

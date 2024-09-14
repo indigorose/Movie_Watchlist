@@ -15,7 +15,7 @@
 	<body>
 		<%- include('partials/navbar') %>
 		<section class="bg-light">
-			<div class="container-fluid overflow-hidden">
+			<div class="container">
 				<div class="row">
 					<div
 						class="col-12 col-md-6 order-1 order-md-0 align-self-md-end"
@@ -27,26 +27,24 @@
 								<h2 class="display-2 fw-bolder mb-4">
 									Welcome to My Watch List
 								</h2>
-								<div class="row">
-									<div class="col-12 col-xxl-8">
-										<p class="fs-5 mb-5">
-											An application to search and create
-											lists of films you would like to
-											watch one day.
-										</p>
-									</div>
+								<div class="col-12 col-xxl-8">
+									<p class="fs-5 mb-5">
+										An application to search and create
+										lists of films you would like to watch
+										one day.
+									</p>
 								</div>
 								<form action="/results" method="GET">
-									<div class="form-group form-floating mb-3">
+									<div class="form-floating mb-3">
 										<input
 											type="text"
 											name="query"
 											class="form-control"
-											id="search"
+											id="floatingInputValue"
 											required
 										/>
-										<label class="form-label" for="search"
-											>Search for your movies here</label
+										<label for="floatingInputValue"
+											>Search for your email here</label
 										>
 									</div>
 									<div class="d-grid gap-2 d-sm-flex">
@@ -65,13 +63,14 @@
 						<img
 							class="img-fluid w-100 h-100 object-fit-cover"
 							loading="lazy"
-							src="../public/images/sean-benesh-6Nbo9Pn0yJA-unsplash.jpg"
+							src="images/sean-benesh-6Nbo9Pn0yJA-unsplash.jpg"
 							alt="Movie Store"
 						/>
 					</div>
 				</div>
 			</div>
 		</section>
+		<%- include ('partials/footer') %>
 		<!-- <div class="container mt-4">
 			<h1>Welcome to My Watch List</h1>
 			<p>

@@ -7,7 +7,7 @@ const userRoutes = require('./routes/userRoutes');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+// const LocalStrategy = require('passport-local');
 const User = require('./models/userModel');
 const axios = require('axios');
 const path = require('path');
@@ -19,7 +19,7 @@ connectDB();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/img', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 app.use(

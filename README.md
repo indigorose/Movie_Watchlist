@@ -33,6 +33,7 @@ Users should be able to:
 - Express
 - EJS
 - Node.js
+- Bootstrap
 
 ### What I learned
 

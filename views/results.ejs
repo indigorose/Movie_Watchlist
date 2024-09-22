@@ -76,7 +76,14 @@
 							</form>
 						</div>
 						<% } else { %>
-						<a class="" href="/login">Login to add to List</a>
+						<div class="p-3 mx-auto">
+							<a
+								class="btn btn-warning btn-sm"
+								role="button"
+								href="/login"
+								>Add to List</a
+							>
+						</div>
 						<% } %>
 					</div>
 				</div>
@@ -87,7 +94,9 @@
 		<p>No movies found. Try a different search.</p>
 		<% } %>
 
-		<a href="/">Go back to Home</a>
+		<div class="p-5">
+			<a class="btn btn-primary" href="/">Go back to Home</a>
+		</div>
 		<%- include ('partials/footer') %>
 	</body>
 	<script

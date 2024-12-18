@@ -24,7 +24,7 @@ app.set('view engine', 'ejs');
 
 app.use(
 	session({
-		secret: process.env.SECRET,
+		secret: process.env.VERCEL_SECRET,
 		resave: false,
 		saveUninitialized: false,
 	})
@@ -57,7 +57,7 @@ app.get('/results', async (req, res) => {
 	try {
 		// Replace with your OMDb API key
 		const response = await axios.get(
-			`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIEDB_API_KEY}&query=${query}`
+			`https://api.themoviedb.org/3/search/movie?api_key=${process.env.VERCEL_MOVIEDB_API_KEY}&query=${query}`
 		);
 		const movies = response.data.results.slice(0, 12);
 

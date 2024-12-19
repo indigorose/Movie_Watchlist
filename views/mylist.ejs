@@ -18,7 +18,7 @@
 		<!-- views/mylist.ejs -->
 		<% if (user && user.movies.length > 0) { %>
 		<div class="container">
-			<h2>My Movie List</h2>
+			<h2 class="p-3">My Movie List</h2>
 			<div class="row">
 				<% user.movies.forEach(movie => { %>
 				<div class="col-12 col-md-3 mb-4">
@@ -39,6 +39,16 @@
 								<%= movie.title %> (<%= movie.release_date ?
 								movie.release_date.split('-')[0] : 'N/A' %>)
 							</h5>
+						</div>
+						<div class="p-2 mx-auto">
+							<form
+								action="/movies/<%= movie.id %>?_method=DELETE"
+								method="POST"
+							>
+								<button type="submit" class="btn btn-danger">
+									Delete
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>

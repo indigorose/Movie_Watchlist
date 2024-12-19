@@ -20,4 +20,6 @@ router.route('/add').post(userController.addMovie);
 
 router.route('/mylist').get(userController.renderUserPage);
 
+router.delete('/movies/:id', userController.deleteMovie);
+
 module.exports = router;

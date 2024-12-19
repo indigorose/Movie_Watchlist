@@ -67,8 +67,32 @@ const addMovie = async (req, res) => {
 	}
 };
 
+// Route handler to delete a movie from the user's list
+const deleteMovie = async (req, res) => {
+	const userId = req.user._id;
+	const movieId = req.params.id;
+	try {
+		// Find the user
+		const user = await User.findById(userId);
+		// Filter out the movie to delete
+		user.movies = user.movies.filter((movie) => movie._id != movieId);
+		await user.save();
+		// Redirect to the user's movie list
+		res.redirect('/mylist');
+	} catch (error) {
+		console.error(error);
+		res.status(500).send('Server error');
+	}
+};
+
+// Route handler for displaying the user's movie list
+
 const renderUserPage = async (req, res) => {
 	try {
+		// Check if req.user is defined and has an _id property
+		if (!req.user || !req.user._id) {
+			return res.status(400).send('User not found');
+		}
 		// Finds the user and populates the array of stored movies
 		const user = await User.findById(req.user._id).populate('movies');
 
@@ -89,4 +113,5 @@ module.exports = {
 	defaultPage,
 	addMovie,
 	renderUserPage,
+	deleteMovie,
 };

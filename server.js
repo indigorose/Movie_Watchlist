@@ -7,6 +7,7 @@ const userRoutes = require('./routes/userRoutes');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const methodOverride = require('express-method-override');
 // const LocalStrategy = require('passport-local');
 const User = require('./models/userModel');
 const axios = require('axios');
@@ -39,6 +40,9 @@ passport.use(User.createStrategy()); // This is provided by passport-local-mongo
 // Serialize and deserialize user instances to and from the session
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+// Method override to delete movies
+app.use(methodOverride('_method'));
 
 // passing current user through
 

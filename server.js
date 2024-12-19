@@ -4,10 +4,11 @@ const express = require('express');
 const app = express();
 const connectDB = require('./config/connectDB');
 const userRoutes = require('./routes/userRoutes');
-const session = require('express-session');
+const session = require('cookie-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const methodOverride = require('express-method-override');
+const MongoStore = require('connect-mongo');
 // const LocalStrategy = require('passport-local');
 const User = require('./models/userModel');
 const axios = require('axios');
@@ -20,14 +21,20 @@ connectDB();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
 	session({
+		cookie: {
+			secure: true,
+			maxAge: 60000,
+		},
 		secret: process.env.VERCEL_SECRET,
 		resave: false,
 		saveUninitialized: false,
+		store: MongoStore.create({ mongoUrl: process.env.VERCEL_MONGO_URI }),
 	})
 );
 
@@ -47,6 +54,9 @@ app.use(methodOverride('_method'));
 // passing current user through
 
 app.use((req, res, next) => {
+	if (!req.session.user) {
+		return next(new Error('User not found'));
+	}
 	res.locals.currentUser = req.user;
 	next();
 });

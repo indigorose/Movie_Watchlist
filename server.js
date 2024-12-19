@@ -54,9 +54,6 @@ app.use(methodOverride('_method'));
 // passing current user through
 
 app.use((req, res, next) => {
-	if (!req.session.user) {
-		return next(new Error('User not found'));
-	}
 	res.locals.currentUser = req.user;
 	next();
 });
